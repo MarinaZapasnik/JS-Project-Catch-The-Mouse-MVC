@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Pangolin';
+    src: url('assets/fonts/Pangolin-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pangolin', sans-serif;
+    font-size: 22px;
+    height: auto;
+    min-width: 360px;
+    max-width: 980px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}

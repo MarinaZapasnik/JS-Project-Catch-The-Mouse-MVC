@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Mouse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <img src="icon.png" alt="Game Icon" class="header-icon">
+        <h1 class="header-title">Поймай мышку</h1>
+    </header>
+    <form id="form">
+        <div class="levels">
+            <label>
+                <input type="radio" name="level" value="slow" checked>
+                Slow Mouse
+            </label>
+            <label>
+                <input type="radio" name="level" value="medium">
+                Medium Mouse
+            </label>
+            <label>
+                <input type="radio" name="level" value="quick">
+                Quick Mouse
+            </label>
+        </div>
+        <button type="button" id="start-button">Catch</button>
+    </form>
+    <div class="timer-container">
+            <label for="timer">Таймер:</label>
+            <span id="timer">00:30</span>
+    </div>
+    <div class="count-container">
+        <label for="count">Споймал:</label>
+        <span id="count">0</span>
+    </div>
+
+    <div class="game-board" id="board">
+        <div class="mouse-board" id="mouse"></div>
+    </div>
+
+    <footer class="footer">
+        <label class="sound-toggle">
+            <input type="checkbox" id="sound-toggle" checked> Включить звук
+        </label>
+        <label class="music-toggle">
+            <input type="checkbox" id="music-toggle" checked> Включить мелодии
+        </label>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
