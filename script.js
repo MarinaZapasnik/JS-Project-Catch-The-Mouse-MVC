@@ -24,7 +24,7 @@ const LEVELS =  [
 ],
 
 model = { 
-    leмels: LEVELS,
+    levels: LEVELS,
 
     createGameBoard(levelName) {
         const level = this.levels.find(level => level.name === levelName);
@@ -43,27 +43,16 @@ view = {
 
         
 
-        const startGame = document.getElementById('start-button');
-        const choiseLevel = document.getElementById('form');
-
-        startGame.addEventListener('click', function() {
-            
-            choiseLevel.addEventListener('change', function (event) {
-            
+        const form = document.getElementById('form');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы
             const levels = [...document.getElementsByName('level')];
             const level = levels.find(level => level.checked);
             const levelName = level.value;
+            controller.createGameBoard(levelName);
             
-            controller.createGameBoard(levelName)
-
-            //this.renderGameBoard(row, column, speed);
-        })
-
-        })
-
-
-        
-
+        });
     },
 
     renderGameBoard (row, column, speed) {
@@ -88,7 +77,7 @@ view = {
 
     } 
 
-}
+
 
 controller = {
     createGameBoard(levelName) {
