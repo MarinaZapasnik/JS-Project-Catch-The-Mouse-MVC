@@ -1,27 +1,23 @@
-const LEVELS =  [
+const LEVELS = [
     {
-        name: 'slow', 
+        name: 'slow',
         speed: 2000,
         row: 7,
         column: 7,
-
     },
     {
-        name: 'medium mouse', 
+        name: 'medium',
         speed: 1500,
         row: 10,
         column: 10,
-
     },
     {
-        name: 'quick mouse', 
+        name: 'quick',
         speed: 1000,
         row: 13,
         column: 13,
-
     },
-
-],
+];
 
 model = { 
     levels: LEVELS,
@@ -55,21 +51,20 @@ view = {
         });
     },
 
-    renderGameBoard (row, column, speed) {
+    renderGameBoard(row, column, speed) {
         const gameBoard = document.querySelector('.mouse-board');
         let gameBoardHTML = '<ul>';
 
-        for (let i = 0; i < row; i++) {
-            gameBoardHTML += '<li><ul>';
-            for (let j = 0; j < column; j++) {
-                gameBoardHTML += `<li data-row="${i}" data-column="${j}"></li>`;
-            }
-            gameBoardHTML += '</ul></li>';
+        for (let i = 0; i < row * column; i++) {
+            gameBoardHTML += `<li data-index="${i}"></li>`;
         }
-    
+
         gameBoardHTML += '</ul>';
         gameBoard.innerHTML = gameBoardHTML;
-    }
+
+        // Пример размещения мышки в случайной ячейке
+       
+    },
 
         
 
