@@ -2,20 +2,20 @@ const LEVELS = [
     {
         name: 'slow',
         speed: 2000,
-        row: 7,
-        column: 7,
+        row: 5,
+        column: 5,
     },
     {
         name: 'medium',
         speed: 1500,
-        row: 10,
-        column: 10,
+        row: 7,
+        column: 7,
     },
     {
         name: 'quick',
         speed: 1000,
-        row: 13,
-        column: 13,
+        row: 9,
+        column: 9,
     },
 ];
 
@@ -24,10 +24,12 @@ model = {
 
     createGameBoard(levelName) {
         const level = this.levels.find(level => level.name === levelName);
+        const className = levelName;
         const row = level.row;
         const column = level.column;
-        const speed = level.speed;
-        view.renderGameBoard(row, column,speed)
+        const speed = level.speed
+        
+        view.renderGameBoard(className, row, column, speed)
 
     }
 
@@ -51,9 +53,11 @@ view = {
         });
     },
 
-    renderGameBoard(row, column, speed) {
+    renderGameBoard(className, row, column, speed) {
         const gameBoard = document.querySelector('.mouse-board');
-        let gameBoardHTML = '<ul>';
+        
+
+        let gameBoardHTML = `<ul class="${className}">`;
 
         for (let i = 0; i < row * column; i++) {
             gameBoardHTML += `<li data-index="${i}"></li>`;
@@ -62,9 +66,54 @@ view = {
         gameBoardHTML += '</ul>';
         gameBoard.innerHTML = gameBoardHTML;
 
-        // Пример размещения мышки в случайной ячейке
+        this.startTimer(15);
+        this.helloMouse(className, speed);
+
+       
        
     },
+
+    startTimer(duration) {
+        const timer = document.getElementById('timer');
+        let time = duration;
+
+        const intervalId = setInterval(function() {
+            
+            const minutes = (time - time % 60) / 60;
+            const seconds = time % 60;
+            time --;
+            timer.textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+
+            if (+time === 0) {
+                clearInterval(intervalId);
+                timer.textContent = ``;
+            }
+        }, 1000)
+    },
+
+    helloMouse(className, speed) {
+        const mouseBoard = document.querySelector(`.${className}`);
+        const cells = [...mouseBoard.querySelectorAll('li')];
+        const img = document.createElement('img');
+        img.src = 'assets/mouse.png';
+        img.alt = 'MOUSE';
+        let cell= null;
+        
+
+        const intervalId = setInterval(function(){
+            if (cell) {
+                cell.innerHTML = '';
+            }
+            let mousePosition =  Math.floor(Math.random() * cells.length);
+            cell = cells.find(cell => +cell.getAttribute('data-index') === mousePosition);
+            cell.append(img);
+            
+            
+
+        }, speed)
+    } 
 
         
 
